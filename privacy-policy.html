@@ -87,7 +87,7 @@
   <div class="logo">WAZAM</div>
   <div class="tagline">Nature just got subtitles.</div>
   <h1>Privacy Policy</h1>
-  <div class="effective-date">Effective Date: April 6, 2026 &nbsp;|&nbsp; Last Updated: November 6, 2026</div>
+  <div class="effective-date">Effective Date: April 6, 2026 &nbsp;|&nbsp; Last Updated: November 7, 2026</div>
 </header>
 
 <div class="highlight-box">
@@ -139,9 +139,19 @@
 <p><strong>Technical Logs</strong></p>
 <p>Like most online services, our servers automatically log technical information about each request, such as your IP address, the time, and the address requested (which, for some requests, includes your coordinates). We use these logs for security, to diagnose problems, and to enforce the daily limit on free identifications, which is counted by IP address. Server logs are deleted automatically after 30 days.</p>
 
+<p><strong>Subscriptions (WAZAM Pro)</strong></p>
+<p>WAZAM Pro is an optional subscription. It is purchased and billed through your Apple App Store account (or your Google Play account on Android). Apple or Google handles the payment. WAZAM never receives your payment card details, billing address, or store account details.</p>
+<p>WAZAM uses RevenueCat, a subscription-management service, to keep track of subscription status. If RevenueCat is enabled in your version of the app:</p>
+<ul>
+  <li>The app creates an anonymous app user ID, a random identifier that isn't linked to your name, email address, or store account. The app sends RevenueCat this ID and your purchase and subscription status (which product you bought, when, and whether it is active), along with technical information that comes with any network request, such as your IP address, platform, app version, and locale.</li>
+  <li>When you identify a sound, the app sends WAZAM's server the same anonymous app user ID. Our server checks that ID with RevenueCat to see whether it has an active WAZAM Pro subscription, and if it does, applies the WAZAM Pro daily limit. For subscribers, that limit is counted by the anonymous app user ID instead of by IP address.</li>
+  <li>Our server doesn't save the anonymous app user ID. It keeps only a one-way hash of it in memory: for a few minutes to remember the result of the check, and for up to a day to count the daily limit. Our logs contain only a shortened version of that hash.</li>
+</ul>
+
 <h2>3. Information We Do Not Collect</h2>
 <ul>
-  <li>Your name, email address, or account information (no account required)</li>
+  <li>Your name, email address, or account information (no WAZAM account required)</li>
+  <li>Payment card or billing details, or your Apple or Google account details (purchases are handled by Apple or Google)</li>
   <li>Audio recordings on our servers after processing</li>
   <li>Your location in the background or when you are not using the app</li>
   <li>Contacts, photos, or any data unrelated to sound identification</li>
@@ -154,6 +164,7 @@
 <ul>
   <li>Identify bird and insect species from your audio recordings</li>
   <li>Filter species suggestions based on your geographic region</li>
+  <li>Check whether you have an active WAZAM Pro subscription, and apply the matching daily identification limit</li>
   <li>Improve the accuracy of our AI identification models using feedback</li>
   <li>Diagnose and fix technical problems with the app, and protect our service from abuse</li>
   <li>Understand general usage patterns to improve the user experience</li>
@@ -163,6 +174,8 @@
 <p>We do not sell your personal information. We do not share your data with advertisers. We share limited information only in these circumstances:</p>
 <ul>
   <li><strong>Service providers:</strong> We use Google Cloud to process audio, run our AI models, and store feedback and logs. Google processes data on our behalf under its data processing terms.</li>
+  <li><strong>RevenueCat:</strong> When RevenueCat is enabled in the app, the app shares the anonymous app user ID and your purchase and subscription status (if any) with RevenueCat, which manages subscription status on our behalf. This happens whether or not you subscribe. Our server sends RevenueCat only that ID, to check it. No audio, location, or payment details are shared with RevenueCat.</li>
+  <li><strong>Apple and Google:</strong> Subscriptions are purchased and billed through the App Store or Google Play under their terms. We don't send them your audio or location.</li>
   <li><strong>OpenStreetMap Nominatim:</strong> If you allow location access, our server sends your coordinates to Nominatim to convert them into a region code. No audio or other information about you is included.</li>
   <li><strong>eBird API (Cornell Lab):</strong> We send your region code (e.g., "US-CA") to eBird's API to retrieve regional species lists. No personal information is transmitted.</li>
   <li><strong>Legal requirements:</strong> We may disclose information if required by law or to protect the rights and safety of our users.</li>
@@ -177,6 +190,7 @@
   <li><strong>Feedback data:</strong> Retained indefinitely to train future models</li>
   <li><strong>Usage analytics:</strong> Retained indefinitely; these summaries contain no audio, coordinates, IP address, or device identifiers</li>
   <li><strong>Server logs:</strong> Deleted automatically after 30 days</li>
+  <li><strong>Subscription status:</strong> RevenueCat keeps the subscription record linked to your anonymous app user ID, and Apple or Google keep their purchase records, under their own policies. Our server keeps only a one-way hash of the ID, in memory: for a few minutes for the subscription check, and for up to a day for the daily limit count.</li>
 </ul>
 
 <h2>7. Your Rights and Choices</h2>
@@ -186,7 +200,8 @@
   <li><strong>Location access:</strong> You can revoke location permission at any time. The app continues to work without location, with less precise regional filtering.</li>
   <li><strong>Recordings on your device:</strong> You can delete all saved recordings at any time with Clear History in Settings.</li>
   <li><strong>Feedback:</strong> Feedback is optional; if you don't want your location saved, don't submit feedback, or turn off location access first.</li>
-  <li><strong>Data deletion:</strong> We do not keep accounts or profiles. If you want feedback you submitted to be deleted, email us with the approximate date, time, and place, and we will delete any records we can match.</li>
+  <li><strong>Subscriptions:</strong> You can manage or cancel WAZAM Pro at any time in your App Store or Google Play account settings. Deleting the app does not cancel a subscription.</li>
+  <li><strong>Data deletion:</strong> We do not keep WAZAM accounts or user profiles. If you want feedback you submitted to be deleted, email us with the approximate date, time, and place, and we will delete any records we can match. If you want the subscription record that RevenueCat keeps for your app deleted, email us with your App Store or Google Play order ID so we can find it. Apple and Google keep their own purchase records under their policies.</li>
 </ul>
 
 <h2>8. Children's Privacy</h2>
@@ -205,6 +220,8 @@
 <p>WAZAM uses the following third-party services:</p>
 <ul>
   <li><strong>Google Cloud Run, Cloud Storage &amp; Cloud Logging:</strong> Audio processing, model hosting, feedback storage, and server logs. <a href="https://cloud.google.com/privacy" target="_blank">Google Cloud Privacy Policy</a></li>
+  <li><strong>RevenueCat:</strong> Manages WAZAM Pro subscription status, using an anonymous app user ID. <a href="https://www.revenuecat.com/privacy" target="_blank">RevenueCat Privacy Policy</a></li>
+  <li><strong>Apple App Store &amp; Google Play:</strong> Process subscription purchases and payments. <a href="https://www.apple.com/legal/privacy/" target="_blank">Apple Privacy Policy</a> · <a href="https://policies.google.com/privacy" target="_blank">Google Privacy Policy</a></li>
   <li><strong>OpenStreetMap Nominatim:</strong> Converts coordinates into a region code (only if you allow location access). <a href="https://osmfoundation.org/wiki/Privacy_Policy" target="_blank">OpenStreetMap Foundation Privacy Policy</a></li>
   <li><strong>eBird API (Cornell Lab of Ornithology):</strong> Regional species data for location filtering. <a href="https://www.birds.cornell.edu/home/privacy-policy/" target="_blank">Cornell Lab Privacy Policy</a></li>
   <li><strong>Wikipedia &amp; Wikimedia Commons:</strong> Species photos and descriptions are loaded by the app directly from Wikimedia, which receives your device's IP address and the name of the species being viewed, as with any web request. No audio or location is sent. <a href="https://foundation.wikimedia.org/wiki/Policy:Privacy_policy" target="_blank">Wikimedia Privacy Policy</a></li>
