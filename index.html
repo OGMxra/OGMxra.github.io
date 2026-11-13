@@ -4,7 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WAZAM — Nature just got subtitles</title>
-<meta name="description" content="Hold up your phone. Tap Listen. Know instantly what bird is around you. WAZAM identifies 6,522 species by sound in real time.">
+<meta name="description" content="Hold up your phone and tap Listen. WAZAM suggests which bird or insect you heard, from 6,500+ bird species and 16 insect species. Free beta on TestFlight.">
+<!-- Reveal-on-scroll only hides content once this runs, so the page reads fine without JS -->
+<script>document.documentElement.classList.add('js');</script>
+<!-- Favicon and share image come from the current app icon. Replace them after the logo redesign. -->
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="WAZAM — Nature just got subtitles">
+<meta property="og:description" content="Tap Listen and WAZAM suggests which bird or insect you heard. Free beta on TestFlight.">
+<meta property="og:url" content="https://ogmxra.github.io/">
+<meta property="og:image" content="https://ogmxra.github.io/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -18,7 +31,7 @@
     --cream: #f5f0e8;
     --cream-dim: #e8e2d6;
     --text: #c8d4e8;
-    --text-dim: #7a8fa8;
+    --text-dim: #8ea0b5; /* app THEME.textSecondary: 5.5:1 on --navy-mid, 4.5:1 on --navy-light */
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -71,11 +84,20 @@
 
   .nav-links a:hover { color: var(--cream); }
 
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+  }
+
   .nav-cta {
     background: var(--green);
     color: var(--navy) !important;
     padding: 10px 22px;
     border-radius: 100px;
+    font-size: 14px;
+    text-decoration: none;
+    white-space: nowrap;
     font-weight: 500 !important;
     transition: background 0.2s, transform 0.1s !important;
   }
@@ -305,7 +327,7 @@
   }
 
   .phone-btn-sub {
-    font-size: 10px;
+    font-size: 12px;
     color: var(--green);
     letter-spacing: 0.05em;
     margin-top: 2px;
@@ -321,7 +343,7 @@
   }
 
   .phone-result-num {
-    font-size: 10px;
+    font-size: 12px;
     color: var(--green);
     margin-bottom: 2px;
     letter-spacing: 0.05em;
@@ -334,7 +356,7 @@
   }
 
   .phone-result-sci {
-    font-size: 9px;
+    font-size: 12px;
     color: var(--text-dim);
     font-style: italic;
   }
@@ -349,13 +371,13 @@
 
   .phone-result-bar {
     height: 100%;
-    width: 94%;
+    width: 87%;
     background: var(--green);
     border-radius: 100px;
   }
 
   .phone-result-pct {
-    font-size: 10px;
+    font-size: 12px;
     color: var(--green);
     text-align: right;
     margin-top: 3px;
@@ -447,13 +469,13 @@
   .step-num {
     font-family: 'Instrument Serif', serif;
     font-size: 64px;
-    color: rgba(61,184,122,0.1);
+    color: #338f6b; /* 3.7:1 on --navy-mid, 3.1:1 on the --navy-light hover */
     line-height: 1;
     margin-bottom: 16px;
     transition: color 0.3s;
   }
 
-  .step:hover .step-num { color: rgba(61,184,122,0.2); }
+  .step:hover .step-num { color: var(--green); }
 
   .step-title {
     font-size: 17px;
@@ -537,7 +559,7 @@
   }
 
   .roadmap-phase {
-    font-size: 11px;
+    font-size: 12px;
     letter-spacing: 0.12em;
     color: var(--text-dim);
     text-transform: uppercase;
@@ -609,6 +631,13 @@
     position: relative;
   }
 
+  .cta-contact {
+    font-size: 15px !important;
+    margin: 32px auto 0 !important;
+  }
+
+  .cta-contact a { color: var(--cream); }
+
   .cta-buttons {
     display: flex;
     gap: 16px;
@@ -661,13 +690,15 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
-  .reveal {
+  /* Hidden only once JS has run (it adds .js to <html>), so the content
+     never stays invisible if the script fails or is blocked. */
+  .js .reveal {
     opacity: 0;
     transform: translateY(32px);
     transition: opacity 0.7s ease, transform 0.7s ease;
   }
 
-  .reveal.visible {
+  .js .reveal.visible {
     opacity: 1;
     transform: translateY(0);
   }
@@ -688,33 +719,55 @@
     50% { opacity: 1; transform: scaleY(1.3); }
   }
 
+  /* ── REDUCED MOTION ── */
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation: none !important;
+      transition: none !important;
+    }
+    .js .reveal { opacity: 1; transform: none; }
+    .btn-primary:hover, .btn-secondary:hover, .nav-cta:hover, .feature:hover { transform: none; }
+  }
+
   /* ── RESPONSIVE ── */
   @media (max-width: 768px) {
     nav { padding: 16px 24px; }
+    /* The section links move to the footer; Join the beta stays in the bar */
     .nav-links { display: none; }
+    .nav-cta { padding: 8px 18px; }
     .section { padding: 80px 24px; }
     .stats { padding: 60px 24px; }
     .roadmap { padding: 80px 24px; }
     .cta-section { padding: 100px 24px; }
     footer { padding: 36px 24px; flex-direction: column; text-align: center; }
-    .footer-links { justify-content: center; }
+    .footer-links { justify-content: center; flex-wrap: wrap; gap: 12px 24px; }
+  }
+
+  /* Section links live in the nav on wide screens and in the footer on phones */
+  .footer-nav-only { display: none; }
+  @media (max-width: 768px) {
+    .footer-nav-only { display: list-item; }
   }
 </style>
 </head>
 <body>
 
 <!-- NAV -->
-<nav>
+<nav aria-label="Main">
   <a href="#" class="nav-logo">WAZAM</a>
-  <ul class="nav-links">
-    <li><a href="#how">How it works</a></li>
-    <li><a href="#features">Features</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="privacy-policy.html">Privacy</a></li>
-    <li><a href="#beta" class="nav-cta">Get early access</a></li>
-  </ul>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#roadmap">Roadmap</a></li>
+      <li><a href="privacy-policy.html">Privacy</a></li>
+    </ul>
+    <a href="https://testflight.apple.com/join/WNxhZSju" class="nav-cta">Join the beta</a>
+  </div>
 </nav>
 
+<main>
 <!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
@@ -727,15 +780,15 @@
   <h1>Nature just got<br><em>subtitles.</em></h1>
   <p class="hero-tagline">The world is speaking. Now you'll understand it.</p>
   <p class="hero-desc">
-    Hold up your phone. Tap Listen. WAZAM identifies any bird 
-    by sound in real time — 6,522 species, instant results, 
-    no account required.
+    Hold up your phone and tap Listen. WAZAM suggests which bird
+    or insect you heard, with how sure it is. 6,500+ bird species,
+    16 insect species, no account required.
   </p>
 
   <div class="hero-actions">
-    <a href="#beta" class="btn-primary">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg>
-      Join TestFlight Beta
+    <a href="https://testflight.apple.com/join/WNxhZSju" class="btn-primary">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg>
+      Join the beta
     </a>
     <a href="#how" class="btn-secondary">
       See how it works →
@@ -743,7 +796,7 @@
   </div>
 
   <!-- Phone mockup -->
-  <div class="hero-phone">
+  <div class="hero-phone" aria-hidden="true">
     <div class="phone-frame">
       <div class="phone-screen">
         <div class="phone-wazam">WAZAM</div>
@@ -772,7 +825,7 @@
           <div class="phone-result-bar-wrap">
             <div class="phone-result-bar"></div>
           </div>
-          <div class="phone-result-pct">94% confidence</div>
+          <div class="phone-result-pct">87% confidence</div>
         </div>
       </div>
     </div>
@@ -782,20 +835,20 @@
 <!-- STATS -->
 <div class="stats">
   <div class="stat reveal">
-    <div class="stat-num">6,<span>522</span></div>
-    <div class="stat-label">Bird species identified</div>
+    <div class="stat-num">6,<span>500+</span></div>
+    <div class="stat-label">Bird species, via BirdNET</div>
   </div>
   <div class="stat reveal">
-    <div class="stat-num"><span>94</span>–97%</div>
-    <div class="stat-label">Real-world accuracy</div>
+    <div class="stat-num"><span>16</span></div>
+    <div class="stat-label">Insect species</div>
   </div>
   <div class="stat reveal">
-    <div class="stat-num"><span>12</span>s</div>
-    <div class="stat-label">Recording window</div>
+    <div class="stat-num"><span>8</span>–15s</div>
+    <div class="stat-label">Per recording</div>
   </div>
   <div class="stat reveal">
-    <div class="stat-num"><span>13</span></div>
-    <div class="stat-label">AI analysis windows</div>
+    <div class="stat-num"><span>0</span></div>
+    <div class="stat-label">Accounts needed</div>
   </div>
 </div>
 
@@ -804,40 +857,40 @@
   <div class="section-label">How it works</div>
   <h2 class="section-title">Point. Listen.<br><em>Know.</em></h2>
   <p class="section-sub">
-    WAZAM's AI pipeline processes sound the way your brain processes vision — 
-    instantly and with context.
+    WAZAM listens for a few seconds, cleans up the recording, and compares
+    it with thousands of known bird and insect calls.
   </p>
 
   <div class="steps">
     <div class="step reveal">
       <div class="step-num">01</div>
       <div class="step-title">Tap Listen</div>
-      <div class="step-desc">WAZAM records up to 15 seconds of ambient audio through your phone's microphone.</div>
+      <div class="step-desc">WAZAM records 8 to 15 seconds of sound through your phone's microphone. You choose the length in Settings.</div>
     </div>
     <div class="step reveal">
       <div class="step-num">02</div>
       <div class="step-title">Noise reduction</div>
-      <div class="step-desc">Wind, traffic, and background noise are filtered before analysis begins.</div>
+      <div class="step-desc">Background hiss is reduced and low rumble from wind and traffic is filtered out before analysis.</div>
     </div>
     <div class="step reveal">
       <div class="step-num">03</div>
       <div class="step-title">AI analysis</div>
-      <div class="step-desc">13 overlapping windows analyzed by BirdNET — Cornell's AI model trained on 6,522 species.</div>
+      <div class="step-desc">The recording is checked in overlapping 3-second slices by BirdNET, the bird sound model from the Cornell Lab of Ornithology and Chemnitz University of Technology. Insects use WAZAM's own model.</div>
     </div>
     <div class="step reveal">
       <div class="step-num">04</div>
       <div class="step-title">Local filtering</div>
-      <div class="step-desc">Results weighted for your region and time of day — no tropical birds suggested in California.</div>
+      <div class="step-desc">If you share your location, results are checked against birds recorded in your region and weighted for the time of day.</div>
     </div>
     <div class="step reveal">
       <div class="step-num">05</div>
-      <div class="step-title">Instant result</div>
-      <div class="step-desc">Top 3 species displayed with confidence scores. Tap to learn more about each one.</div>
+      <div class="step-title">Your result</div>
+      <div class="step-desc">Up to three likely matches, each with how confident WAZAM is. Tap one to learn more.</div>
     </div>
     <div class="step reveal">
       <div class="step-num">06</div>
-      <div class="step-title">You train the AI</div>
-      <div class="step-desc">Every Yes/No feedback tap teaches WAZAM to be more accurate for the next user.</div>
+      <div class="step-title">Tell us how it did</div>
+      <div class="step-desc">Tap Yes or No after a result. Your feedback helps improve future versions.</div>
     </div>
   </div>
 </section>
@@ -861,22 +914,22 @@
       <div class="feature reveal">
         <div class="feature-icon">📍</div>
         <div class="feature-title">Location-aware filtering</div>
-        <div class="feature-desc">Uses your GPS to prioritize species actually known to exist in your region.</div>
+        <div class="feature-desc">With your permission, WAZAM uses your location to favour species recorded in your region.</div>
       </div>
       <div class="feature reveal">
         <div class="feature-icon">🌅</div>
         <div class="feature-title">Time-of-day weighting</div>
-        <div class="feature-desc">Dawn chorus? Nocturnal owls? WAZAM knows what's likely at every hour.</div>
+        <div class="feature-desc">Dawn chorus or night calls: results are weighted for what's usually singing at that hour.</div>
       </div>
       <div class="feature reveal">
-        <div class="feature-icon">🔁</div>
-        <div class="feature-title">Self-improving AI</div>
-        <div class="feature-desc">Every user correction trains the next model version. WAZAM gets smarter as it grows.</div>
+        <div class="feature-icon">🦗</div>
+        <div class="feature-title">Insects too</div>
+        <div class="feature-desc">Switch to Insects to identify 16 crickets, katydids, cicadas and bees. Free for everyone.</div>
       </div>
       <div class="feature reveal">
-        <div class="feature-icon">⚡</div>
-        <div class="feature-title">Instant results</div>
-        <div class="feature-desc">Results in under 3 seconds on warm server. No waiting, no account.</div>
+        <div class="feature-icon">💬</div>
+        <div class="feature-title">Your feedback counts</div>
+        <div class="feature-desc">Tell WAZAM when it got it right or wrong. Your feedback helps improve future versions. No account needed.</div>
       </div>
       <div class="feature reveal">
         <div class="feature-icon">🔒</div>
@@ -893,49 +946,43 @@
     <div class="section-label">Roadmap</div>
     <h2 class="section-title">Birds are just<br><em>the beginning.</em></h2>
     <p class="section-sub">
-      Every sound in the world — identified. We're building the platform 
-      one category at a time.
+      Birds and insects are live. More of nature's voices are coming,
+      one group at a time.
     </p>
 
     <div class="roadmap-grid">
       <div class="roadmap-item roadmap-active reveal">
-        <div class="roadmap-phase">Phase 1 — Now</div>
+        <div class="roadmap-phase">Live</div>
         <div class="roadmap-title">Birds</div>
         <ul class="roadmap-items">
-          <li>6,522 species globally</li>
-          <li>Live on TestFlight</li>
-          <li>App Store submission imminent</li>
-          <li>iOS + Android</li>
+          <li>6,500+ species worldwide</li>
+          <li>Location and time-of-day aware</li>
+          <li>iPhone beta on TestFlight</li>
         </ul>
       </div>
-      <div class="roadmap-item reveal">
-        <div class="roadmap-phase">Phase 2 — Month 2-3</div>
+      <div class="roadmap-item roadmap-active reveal">
+        <div class="roadmap-phase">Live</div>
         <div class="roadmap-title">Insects</div>
         <ul class="roadmap-items">
-          <li>Crickets, cicadas, beetles</li>
-          <li>Pest control vertical</li>
-          <li>iNaturalist dataset</li>
-          <li>$22B market opportunity</li>
+          <li>16 species</li>
+          <li>Crickets, katydids, cicadas, bees</li>
+          <li>Free for everyone</li>
         </ul>
       </div>
       <div class="roadmap-item reveal">
-        <div class="roadmap-phase">Phase 3 — Month 4-6</div>
+        <div class="roadmap-phase">Next</div>
         <div class="roadmap-title">Frogs</div>
         <ul class="roadmap-items">
-          <li>Conservation partnerships</li>
-          <li>FrogID dataset integration</li>
-          <li>WWF / IUCN collaboration</li>
-          <li>Grant funding eligible</li>
+          <li>Frog and toad calls</li>
+          <li>Same Listen button</li>
         </ul>
       </div>
       <div class="roadmap-item reveal">
-        <div class="roadmap-phase">Phase 4 — Month 6-12</div>
-        <div class="roadmap-title">Weather + Home</div>
+        <div class="roadmap-phase">Later</div>
+        <div class="roadmap-title">More sounds</div>
         <ul class="roadmap-items">
-          <li>Rain, thunder, wind</li>
-          <li>HVAC + plumbing sounds</li>
-          <li>B2B white label contracts</li>
-          <li>Insurance sector play</li>
+          <li>More of nature's voices</li>
+          <li>Shaped by beta feedback</li>
         </ul>
       </div>
     </div>
@@ -947,24 +994,31 @@
   <div class="cta-bg"></div>
   <h2>Hear something.<br><em>Know something.</em></h2>
   <p>
-    Join the beta and be among the first to experience 
-    real-time sound identification — and help train the AI 
-    that powers it.
+    Try WAZAM on your next walk and tell us what it got right
+    and wrong. Your feedback helps improve future versions.
   </p>
   <div class="cta-buttons">
-    <a href="mailto:omoraestrada@outlook.com?subject=WAZAM TestFlight Access" class="btn-primary">
-      Request TestFlight Access
+    <a href="https://testflight.apple.com/join/WNxhZSju" class="btn-primary">
+      Join the beta
     </a>
     <a href="privacy-policy.html" class="btn-secondary">
       Privacy Policy
     </a>
   </div>
+  <p class="cta-contact">
+    On Android, or have a question? Email
+    <a href="mailto:omoraestrada@outlook.com">omoraestrada@outlook.com</a>
+  </p>
 </section>
+</main>
 
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">WAZAM</div>
   <ul class="footer-links">
+    <li class="footer-nav-only"><a href="#how">How it works</a></li>
+    <li class="footer-nav-only"><a href="#features">Features</a></li>
+    <li class="footer-nav-only"><a href="#roadmap">Roadmap</a></li>
     <li><a href="privacy-policy.html">Privacy Policy</a></li>
     <li><a href="terms.html">Terms of Service</a></li>
     <li><a href="mailto:omoraestrada@outlook.com">Contact</a></li>
@@ -973,6 +1027,9 @@
 </footer>
 
 <script>
+if (!('IntersectionObserver' in window)) {
+  document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+} else {
 const observer = new IntersectionObserver(
   entries => entries.forEach(e => {
     if (e.isIntersecting) {
@@ -987,6 +1044,7 @@ document.querySelectorAll('.reveal').forEach((el, i) => {
   el.style.transitionDelay = (i % 4) * 0.1 + 's';
   observer.observe(el);
 });
+}
 </script>
 </body>
 </html>
