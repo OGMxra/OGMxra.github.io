@@ -95,7 +95,7 @@
   <div class="logo"><img src="brand/wazam-mark-on-light.svg" alt="" width="39" height="24">WAZAM</div>
   <div class="tagline">Nature just got subtitles.</div>
   <h1>Privacy Policy</h1>
-  <div class="effective-date">Effective Date: April 6, 2026 &nbsp;|&nbsp; Last Updated: November 13, 2026</div>
+  <div class="effective-date">Effective Date: April 6, 2026 &nbsp;|&nbsp; Last Updated: November 14, 2026</div>
 </header>
 
 <main>
@@ -122,9 +122,10 @@
 <p>On your device, the app keeps a copy of your most recent recordings (about 50) so you can replay them from your results and History. These copies stay in the app's own storage on your phone and are not uploaded again. Older recordings are deleted automatically as new ones are added. You can delete them all at any time with Clear History in Settings, or by deleting the app. Like other app data, they may be included in your device's own backups (for example iCloud or Google backups) if you have backups turned on.</p>
 
 <p><strong>Location Data (Optional)</strong></p>
-<p>If you grant location permission, WAZAM reads your device's location (latitude and longitude) when you tap Listen, and once during first-time setup, to filter species suggestions to those known to occur in your region. WAZAM only requests location while you are using the app; it never tracks your location in the background.</p>
+<p>If you grant location permission, WAZAM reads your device's location (latitude and longitude) when you tap Listen, to filter species suggestions to those known to occur in your region. Tapping Listen is also when the app first asks for location permission. If you have already allowed location, the app also reads it once when the intro opens (for example, when you replay it from Settings), to show an example of a bird common near you. WAZAM only requests location while you are using the app; it never tracks your location in the background.</p>
 <ul>
   <li>Your coordinates are sent with each identification request. Our server converts them into a region code (for example "US-CA") using OpenStreetMap's Nominatim service, which receives the coordinates for that lookup (see Section 10).</li>
+  <li>When the intro shows a bird common near you, the app sends your coordinates to our server for that lookup. Our server rounds them to the nearest 0.1 degree, an area about 11 km (7 miles) across, before asking Nominatim for your region code and eBird for birds seen there, so neither service receives your exact location. We do not save these coordinates in any database. Only the rounded area and the bird found for it are kept in our server's memory, for up to 24 hours, so that nearby lookups can reuse the answer; they are not linked to you. The exact coordinates are part of the request's address, so they appear in our server logs, which are deleted automatically after 30 days.</li>
   <li>For an identification request, we do not save your coordinates in any database. They may appear in our server logs, which are deleted automatically after 30 days.</li>
   <li><strong>If you submit feedback</strong> on an identification ("Was this correct?"), the precise coordinates of that identification are saved with your feedback and retained in our cloud storage (Google Cloud Storage) to improve our models. See "Feedback Data" below.</li>
   <li>Location is never shared with advertisers.</li>
@@ -196,7 +197,7 @@
 <ul>
   <li><strong>Audio recordings on our servers:</strong> Deleted as soon as processing finishes (within seconds); never saved</li>
   <li><strong>Audio recordings on your device:</strong> The most recent recordings (about 50) are kept in the app on your phone for playback, until you clear your History or delete the app</li>
-  <li><strong>Location sent with identifications:</strong> Not saved, except in server logs, which are deleted after 30 days</li>
+  <li><strong>Location sent with identifications or from the intro:</strong> Not saved, except in server logs, which are deleted after 30 days</li>
   <li><strong>Location sent with feedback:</strong> Retained with that feedback, as below</li>
   <li><strong>Feedback data:</strong> Retained indefinitely to train future models</li>
   <li><strong>Usage analytics:</strong> Retained indefinitely; these summaries contain no audio, coordinates, IP address, or device identifiers</li>
@@ -236,7 +237,7 @@
   <li><strong>OpenStreetMap Nominatim:</strong> Converts coordinates into a region code (only if you allow location access). <a href="https://osmfoundation.org/wiki/Privacy_Policy" target="_blank">OpenStreetMap Foundation Privacy Policy</a></li>
   <li><strong>eBird API (Cornell Lab of Ornithology):</strong> Regional species data for location filtering. <a href="https://www.birds.cornell.edu/home/privacy-policy/" target="_blank">Cornell Lab Privacy Policy</a></li>
   <li><strong>Wikipedia &amp; Wikimedia Commons (Wikimedia Foundation):</strong> Species photos and descriptions are loaded by the app directly from Wikimedia, which receives your device's IP address and the species name, as with any web request (see Section 5). No location, recordings, or subscription information is sent. <a href="https://foundation.wikimedia.org/wiki/Policy:Privacy_policy" target="_blank">Wikimedia Privacy Policy</a></li>
-  <li><strong>Expo (app updates):</strong> The app checks Expo's update service for app updates, which receives your IP address, platform, and app version. <a href="https://expo.dev/privacy" target="_blank">Expo Privacy Policy</a></li>
+  <li><strong>Expo (app updates):</strong> The app checks Expo's update service for app updates, which receives your IP address, platform, app version, and a random identifier created when the app is installed (EAS-Client-ID). That identifier isn't linked to your name, email address, or any account, and is used only to deliver app updates. <a href="https://expo.dev/privacy" target="_blank">Expo Privacy Policy</a></li>
   <li><strong>BirdNET (Cornell Lab of Ornithology &amp; Chemnitz University of Technology):</strong> Open-source AI model for species identification. No user data is transmitted to BirdNET servers; the model runs on our infrastructure.</li>
 </ul>
 
