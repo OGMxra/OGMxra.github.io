@@ -1,2 +1,5 @@
-# OGMxra.github.io
-WAZAM — official website, privacy policy,                  and terms of service for the universal                  sound recognition app.
+# wazam.ai
+
+The website for WAZAM, served by GitHub Pages at https://wazam.ai: the home page, the privacy policy and the terms of service. The old address, https://ogmxra.github.io/, redirects there.
+
+WAZAM identifies birds and insects by sound.
