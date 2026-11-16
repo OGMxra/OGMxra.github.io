@@ -126,11 +126,17 @@
     padding: 120px 24px 80px;
     position: relative;
     overflow: hidden;
+    isolation: isolate;
   }
 
+  /* Behind the hero content. Without the z-index it painted over the
+     headline and buttons whenever the entrance animations were off
+     (Reduce Motion), and swallowed their clicks. */
   .hero-bg {
     position: absolute;
     inset: 0;
+    z-index: -1;
+    pointer-events: none;
     background:
       radial-gradient(ellipse 60% 50% at 50% 60%, rgba(61,184,122,0.08) 0%, transparent 70%),
       radial-gradient(ellipse 40% 40% at 20% 20%, rgba(26,39,68,0.8) 0%, transparent 60%),
