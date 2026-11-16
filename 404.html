@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page not found · WAZAM</title>
+<meta name="robots" content="noindex">
+<!-- GitHub Pages serves this file for any missing URL, including nested ones
+     like /a/b, so asset and link paths here are root-relative on purpose. -->
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#0f1c35">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0f1c35;
+    --green: #3db87a;
+    --cream: #f5f0e8;
+    --text: #c8d4e8;
+    --text-dim: #8ea0b5;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    min-height: 100vh;
+    min-height: 100dvh;
+    background: var(--navy);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    line-height: 1.7;
+    display: flex;
+    flex-direction: column;
+  }
+  :focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
+  header { padding: 16px 24px; }
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Instrument Serif', serif;
+    font-size: 22px;
+    color: var(--cream);
+    letter-spacing: 0.05em;
+    text-decoration: none;
+  }
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 48px 24px 96px;
+  }
+  .code { font-size: 15px; color: var(--text-dim); margin-bottom: 12px; }
+  h1 {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: clamp(44px, 9vw, 72px);
+    line-height: 1.05;
+    color: var(--cream);
+    margin-bottom: 20px;
+    text-wrap: balance;
+  }
+  h1 em { font-style: italic; color: var(--green); }
+  p { font-size: 18px; max-width: 34em; text-wrap: pretty; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 28px;
+    border-radius: 100px;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .btn-primary { background: var(--green); color: var(--navy); }
+  .btn-primary:hover { background: #4dd48e; }
+  .btn-secondary { color: var(--cream); border: 1px solid rgba(200,212,232,0.3); }
+  .btn-secondary:hover { border-color: rgba(200,212,232,0.6); background: rgba(200,212,232,0.05); }
+  @media (prefers-reduced-motion: reduce) {
+    .btn { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="/" aria-label="WAZAM home"><img src="/brand/wazam-mark.svg" alt="" width="46" height="28">WAZAM</a>
+</header>
+
+<main>
+  <div class="code">404</div>
+  <h1>Nothing calling<br><em>at this address.</em></h1>
+  <p>This page doesn't exist, or it moved. The home page has everything about WAZAM and how to join the beta.</p>
+  <div class="actions">
+    <a class="btn btn-primary" href="/">Go to the home page</a>
+    <a class="btn btn-secondary" href="mailto:support@wazam.ai">Email support</a>
+  </div>
+</main>
+
+</body>
+</html>
