@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WAZAM — Nature just got subtitles</title>
+<title>WAZAM — Identify birds and insects by sound</title>
 <meta name="description" content="Hold up your phone and tap Listen. WAZAM suggests which bird or insect you heard, from 6,000+ bird species and 16 insect species. Free beta on TestFlight.">
 <link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -12,7 +12,7 @@
 <link rel="canonical" href="https://wazam.ai/">
 <meta name="theme-color" content="#0f1c35">
 <meta property="og:type" content="website">
-<meta property="og:title" content="WAZAM — Nature just got subtitles">
+<meta property="og:title" content="WAZAM — Identify birds and insects by sound">
 <meta property="og:description" content="Tap Listen and WAZAM suggests which bird or insect you heard. Free beta on TestFlight.">
 <meta property="og:url" content="https://wazam.ai/">
 <meta property="og:image" content="https://wazam.ai/og-image.png?v=2">
@@ -34,6 +34,10 @@
   "screenshot": "https://wazam.ai/img/app-result.jpg",
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
 }
+</script>
+<script>
+  // Android phones see the Android closed test first; everyone else sees the iPhone beta.
+  if (/Android/i.test(navigator.userAgent)) document.documentElement.classList.add('is-android');
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -157,6 +161,7 @@
     color: var(--text-dim);
     text-decoration: none;
     font-size: 15px;
+    white-space: nowrap;
     transition: color 0.2s;
   }
 
@@ -191,7 +196,7 @@
     background: rgba(200,212,232,0.05);
   }
 
-  .btn-small { padding: 9px 20px; font-size: 14px; }
+  .btn-small { padding: 9px 20px; font-size: 14px; white-space: nowrap; }
 
   /* ── HERO ── */
   .hero {
@@ -223,6 +228,13 @@
     line-height: 1.3;
     margin-bottom: 28px;
     animation: fadeUp 0.8s ease 0.1s both;
+  }
+
+  .hero-copy {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .hero-desc {
@@ -452,8 +464,10 @@
     font-size: 16px;
     color: var(--text-dim);
     margin-bottom: 24px;
-    flex: 1;
   }
+
+  /* Buttons sit at the bottom of both cards */
+  .platform .btn { margin-top: auto; }
 
   .platform-steps {
     font-size: 15px;
@@ -462,6 +476,17 @@
   }
 
   .platform-steps li { padding-left: 4px; margin-bottom: 6px; }
+
+  /* The address as plain text, so people on webmail can copy it in one click */
+  .copyable {
+    color: var(--cream);
+    -webkit-user-select: all;
+    user-select: all;
+  }
+
+  /* Platform-aware hero: the class is set in <head> from the user agent */
+  .is-android .not-android,
+  html:not(.is-android) .android-only { display: none; }
 
   .contact {
     text-align: center;
@@ -529,8 +554,32 @@
   }
 
   /* ── RESPONSIVE ── */
+  /* Wide screens: copy on the left, the app screenshot beside it, both above the fold */
+  @media (min-width: 1024px) {
+    .hero {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 64px;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 136px var(--gutter) 88px;
+      text-align: left;
+    }
+    .hero-copy { align-items: flex-start; flex: 1 1 auto; min-width: 0; }
+    .hero-actions { justify-content: flex-start; }
+    .hero-phone { margin-top: 0; flex-shrink: 0; }
+  }
+
   @media (max-width: 999px) {
     .roadmap-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* Below 880px the section links don't fit beside the logo and button,
+     so they move to the footer */
+  @media (max-width: 879px) {
+    .nav-links { display: none; }
+    .footer-nav-only { display: list-item; }
   }
 
   @media (max-width: 799px) {
@@ -542,7 +591,6 @@
 
   @media (max-width: 768px) {
     :root { --gutter: 24px; }
-    .nav-links { display: none; }
     .hero { padding: 120px 24px 72px; }
     .hero-phone { margin-top: 56px; }
     .section { padding: 72px 0; }
@@ -554,7 +602,6 @@
     .stat-num { font-size: 44px; }
     footer { flex-direction: column; text-align: center; }
     .footer-links { justify-content: center; flex-wrap: wrap; gap: 12px 24px; }
-    .footer-nav-only { display: list-item; }
   }
 
   @media (max-width: 559px) {
@@ -574,7 +621,7 @@
       <li><a href="#how">How it works</a></li>
       <li><a href="#features">Features</a></li>
       <li><a href="#roadmap">Roadmap</a></li>
-      <li><a href="privacy-policy.html">Privacy</a></li>
+      <li><a href="privacy-policy.html">Privacy Policy</a></li>
     </ul>
     <a href="#beta" class="btn btn-primary btn-small">Join the beta</a>
   </div>
@@ -584,19 +631,23 @@
 
 <!-- HERO -->
 <section class="hero" aria-labelledby="hero-title">
-  <h1 id="hero-title">Nature just got<br><em>subtitles.</em></h1>
-  <p class="hero-tagline">The world is speaking. Now you can follow along.</p>
-  <p class="hero-desc">
-    Hold up your phone and tap Listen. WAZAM suggests which bird
-    or insect you heard, with how sure it is. 6,000+ bird species,
-    16 insect species, no account required.
-  </p>
+  <div class="hero-copy">
+    <h1 id="hero-title">Nature just got<br><em>subtitles.</em></h1>
+    <p class="hero-tagline">Identify birds and insects by their sound.</p>
+    <p class="hero-desc">
+      Hold up your phone and tap Listen. WAZAM suggests what you heard,
+      with how sure it is. 6,000+ bird species, 16 insect species,
+      no account needed.
+    </p>
 
-  <div class="hero-actions">
-    <a href="https://testflight.apple.com/join/WNxhZSju" class="btn btn-primary">Join the iPhone beta</a>
-    <a href="#how" class="btn btn-secondary">See how it works</a>
+    <div class="hero-actions">
+      <a href="https://testflight.apple.com/join/WNxhZSju" class="btn btn-primary not-android">Join the iPhone beta</a>
+      <a href="#android" class="btn btn-primary android-only">Join the Android test</a>
+      <a href="#how" class="btn btn-secondary">See how it works</a>
+    </div>
+    <p class="hero-note not-android">Free on TestFlight. On Android? <a href="#android">Join the closed test</a>.</p>
+    <p class="hero-note android-only">Free closed test on Google Play. On iPhone? <a href="https://testflight.apple.com/join/WNxhZSju">Join the TestFlight beta</a>.</p>
   </div>
-  <p class="hero-note">Free on TestFlight. On Android? <a href="#android">Join the closed test</a>.</p>
 
   <!-- Real app screenshot: 1.5.0 on iPhone (AI/RELEASE/screenshots/1.5.0/raw/01-result.png) -->
   <figure class="hero-phone">
@@ -636,7 +687,7 @@
       <li class="step">
         <span class="step-num" aria-hidden="true">2</span>
         <h3>WAZAM listens closely</h3>
-        <p>Hiss and low wind and traffic rumble are filtered out. BirdNET, the bird sound model from the Cornell Lab of Ornithology and Chemnitz University of Technology, checks the recording in overlapping 3-second slices. Insects use WAZAM's own model.</p>
+        <p>WAZAM reduces hiss and filters out the low rumble of wind and traffic. Then BirdNET, the bird-sound model from the Cornell Lab of Ornithology and Chemnitz University of Technology, listens for birds. Insects use WAZAM's own model.</p>
       </li>
       <li class="step">
         <span class="step-num" aria-hidden="true">3</span>
@@ -666,8 +717,8 @@
         <p>With your permission, WAZAM favours species recorded in your region and what usually calls at that hour. Without it, the app still works.</p>
       </li>
       <li class="feature">
-        <h3>Insects too, free</h3>
-        <p>Switch to Insects for 16 species of crickets, katydids, cicadas and bees. Free for everyone.</p>
+        <h3>Insects too</h3>
+        <p>Switch to Insects for crickets, katydids, cicadas and bees.</p>
       </li>
       <li class="feature">
         <h3>Private by design</h3>
@@ -682,8 +733,8 @@
   <div class="wrap">
     <h2 class="section-title" id="roadmap-title">Birds are just<br><em>the beginning.</em></h2>
     <p class="section-sub">
-      Birds and insects are live. More of nature's voices are coming,
-      one group at a time.
+      Birds and insects are live in the beta, on iPhone and Android.
+      More of nature's voices are coming, one group at a time.
     </p>
 
     <ul class="roadmap-grid">
@@ -691,18 +742,16 @@
         <p class="roadmap-phase">Live</p>
         <h3>Birds</h3>
         <ul class="roadmap-items">
-          <li>6,000+ species worldwide</li>
+          <li>Worldwide, via BirdNET</li>
           <li>Location and time-of-day aware</li>
-          <li>iPhone beta on TestFlight</li>
         </ul>
       </li>
       <li class="roadmap-item roadmap-live">
         <p class="roadmap-phase">Live</p>
         <h3>Insects</h3>
         <ul class="roadmap-items">
-          <li>16 species</li>
           <li>Crickets, katydids, cicadas, bees</li>
-          <li>Free for everyone</li>
+          <li>One switch on the Listen screen</li>
         </ul>
       </li>
       <li class="roadmap-item">
@@ -731,8 +780,9 @@
     <div class="beta-head">
       <h2 class="section-title" id="beta-title">Heard something?<br><em>Find out what it was.</em></h2>
       <p class="section-sub">
-        The beta is free. Try WAZAM on your next walk and tell us
-        what it got right and wrong.
+        The beta is free, with up to 20 identifications a day for birds
+        and insects together. Try WAZAM on your next walk and tell us what
+        it got right and wrong.
       </p>
     </div>
 
@@ -740,16 +790,22 @@
       <div class="platform">
         <h3>iPhone</h3>
         <p>Join the public beta through Apple's TestFlight app.</p>
+        <ol class="platform-steps">
+          <li>On your iPhone, tap the button below.</li>
+          <li>Get Apple's free TestFlight app if you don't have it.</li>
+          <li>Open the invite in TestFlight and install WAZAM.</li>
+        </ol>
         <a href="https://testflight.apple.com/join/WNxhZSju" class="btn btn-primary">Join the iPhone beta</a>
       </div>
       <div class="platform" id="android">
         <h3>Android</h3>
         <p>WAZAM is in closed testing on Google Play, so we add each tester by hand. Testers who stay for 14 days help WAZAM open to everyone on Google Play.</p>
         <ol class="platform-steps">
-          <li>Email us the Google account you use on Play.</li>
-          <li>Once we've added you, <a href="https://play.google.com/store/apps/details?id=com.wazam.mobile">open WAZAM on Google Play</a> and install it.</li>
+          <li>Email <span class="copyable">support@wazam.ai</span> the Google account you use on Play.</li>
+          <li>We'll add you and reply with a link to join the test.</li>
+          <li>Open it, tap Become a tester, then install WAZAM from Google Play.</li>
         </ol>
-        <a href="mailto:support@wazam.ai?subject=Android%20closed%20test" class="btn btn-secondary">Email to join the test</a>
+        <a href="mailto:support@wazam.ai?subject=Android%20closed%20test&amp;body=My%20Google%20Play%20account%3A%20" class="btn btn-primary">Email to join the test</a>
       </div>
     </div>
 
