@@ -260,141 +260,21 @@
     transform: translateY(-2px);
   }
 
-  /* ── PHONE MOCKUP ── */
+  /* ── APP SCREENSHOT ── */
   .hero-phone {
     margin-top: 72px;
-    position: relative;
-    display: inline-block;
     animation: fadeUp 0.8s ease 0.5s both;
   }
 
-  .phone-frame {
-    width: 240px;
-    height: 480px;
-    background: var(--navy-light);
+  .hero-phone img {
+    display: block;
+    width: 270px;
+    max-width: 100%;
+    height: auto;
     border-radius: 36px;
     border: 1.5px solid rgba(200,212,232,0.15);
-    overflow: hidden;
-    position: relative;
-    box-shadow:
-      0 40px 80px rgba(0,0,0,0.6),
-      0 0 0 1px rgba(255,255,255,0.05) inset;
-  }
-
-  .phone-screen {
-    padding: 24px 16px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .phone-wazam {
-    font-family: 'Instrument Serif', serif;
-    font-size: 16px;
-    color: var(--cream);
-    letter-spacing: 0.1em;
-    margin-bottom: 28px;
-  }
-
-  .phone-btn {
-    width: 120px; height: 120px;
-    background: var(--navy-mid);
-    border-radius: 50%;
-    border: 2px solid rgba(61,184,122,0.4);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 8px auto;
-    position: relative;
-  }
-
-  .phone-btn::before {
-    content: '';
-    position: absolute;
-    inset: -8px;
-    border-radius: 50%;
-    border: 1px solid rgba(61,184,122,0.15);
-    animation: ringPulse 2.5s ease infinite;
-  }
-
-  .phone-btn::after {
-    content: '';
-    position: absolute;
-    inset: -16px;
-    border-radius: 50%;
-    border: 1px solid rgba(61,184,122,0.07);
-    animation: ringPulse 2.5s ease 0.5s infinite;
-  }
-
-  @keyframes ringPulse {
-    0% { transform: scale(0.9); opacity: 0; }
-    50% { opacity: 1; }
-    100% { transform: scale(1.1); opacity: 0; }
-  }
-
-  .phone-btn-text {
-    font-family: 'Instrument Serif', serif;
-    font-size: 18px;
-    color: var(--cream);
-  }
-
-  .phone-btn-sub {
-    font-size: 12px;
-    color: var(--green);
-    letter-spacing: 0.05em;
-    margin-top: 2px;
-  }
-
-  .phone-result {
-    margin-top: 20px;
-    background: rgba(61,184,122,0.08);
-    border: 1px solid rgba(61,184,122,0.2);
-    border-radius: 14px;
-    padding: 14px 16px;
-    width: 100%;
-  }
-
-  .phone-result-num {
-    font-size: 12px;
-    color: var(--green);
-    margin-bottom: 2px;
-    letter-spacing: 0.05em;
-  }
-
-  .phone-result-name {
-    font-family: 'Instrument Serif', serif;
-    font-size: 15px;
-    color: var(--cream);
-  }
-
-  .phone-result-sci {
-    font-size: 12px;
-    color: var(--text-dim);
-    font-style: italic;
-  }
-
-  .phone-result-bar-wrap {
-    margin-top: 8px;
-    background: rgba(255,255,255,0.05);
-    border-radius: 100px;
-    height: 4px;
-    overflow: hidden;
-  }
-
-  .phone-result-bar {
-    height: 100%;
-    width: 87%;
-    background: var(--green);
-    border-radius: 100px;
-  }
-
-  .phone-result-pct {
-    font-size: 12px;
-    color: var(--green);
-    text-align: right;
-    margin-top: 3px;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+    background: var(--navy);
   }
 
   /* ── STATS ── */
@@ -720,22 +600,6 @@
     transform: translateY(0);
   }
 
-  /* ── SOUND WAVE SVG ── */
-  .wave-anim path {
-    animation: waveFlow 3s ease-in-out infinite;
-    transform-origin: center;
-  }
-
-  .wave-anim path:nth-child(2) { animation-delay: 0.3s; }
-  .wave-anim path:nth-child(3) { animation-delay: 0.6s; }
-  .wave-anim path:nth-child(4) { animation-delay: 0.9s; }
-  .wave-anim path:nth-child(5) { animation-delay: 1.2s; }
-
-  @keyframes waveFlow {
-    0%, 100% { opacity: 0.3; transform: scaleY(1); }
-    50% { opacity: 1; transform: scaleY(1.3); }
-  }
-
   /* ── REDUCED MOTION ── */
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
@@ -812,41 +676,14 @@
     </a>
   </div>
 
-  <!-- Phone mockup -->
-  <div class="hero-phone" aria-hidden="true">
-    <div class="phone-frame">
-      <div class="phone-screen">
-        <div class="phone-wazam">WAZAM</div>
-
-        <!-- Sound wave bars -->
-        <svg class="wave-anim" width="160" height="32" viewBox="0 0 160 32" style="margin-bottom:12px">
-          <path d="M10 16 Q10 8 10 16" stroke="#3db87a" stroke-width="3" fill="none" stroke-linecap="round"/>
-          <path d="M30 16 Q30 4 30 16" stroke="#3db87a" stroke-width="3" fill="none" stroke-linecap="round"/>
-          <path d="M50 16 Q50 2 50 16" stroke="#3db87a" stroke-width="3" fill="none" stroke-linecap="round"/>
-          <path d="M70 16 Q70 6 70 16" stroke="#3db87a" stroke-width="3" fill="none" stroke-linecap="round"/>
-          <path d="M90 16 Q90 1 90 16" stroke="#3db87a" stroke-width="3" fill="none" stroke-linecap="round"/>
-          <path d="M110 16 Q110 5 110 16" stroke="#3db87a" stroke-width="3" fill="none" stroke-linecap="round"/>
-          <path d="M130 16 Q130 3 130 16" stroke="#3db87a" stroke-width="3" fill="none" stroke-linecap="round"/>
-          <path d="M150 16 Q150 9 150 16" stroke="#3db87a" stroke-width="3" fill="none" stroke-linecap="round"/>
-        </svg>
-
-        <div class="phone-btn">
-          <span class="phone-btn-text">Listen</span>
-          <span class="phone-btn-sub">tap to identify</span>
-        </div>
-
-        <div class="phone-result">
-          <div class="phone-result-num">#1 MATCH</div>
-          <div class="phone-result-name">Northern Cardinal</div>
-          <div class="phone-result-sci">Cardinalis cardinalis</div>
-          <div class="phone-result-bar-wrap">
-            <div class="phone-result-bar"></div>
-          </div>
-          <div class="phone-result-pct">87% confidence</div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <!-- Real app screenshot: 1.5.0 on iPhone (AI/RELEASE/screenshots/1.5.0/raw/01-result.png) -->
+  <figure class="hero-phone">
+    <picture>
+      <source srcset="img/app-result.webp" type="image/webp">
+      <img src="img/app-result.jpg" width="270" height="587" decoding="async"
+           alt="WAZAM on iPhone after a recording: the top suggestion is Anna's Hummingbird, a strong match at 85% confidence, with a photo and a &ldquo;Was this correct?&rdquo; prompt.">
+    </picture>
+  </figure>
 </section>
 
 <!-- STATS -->
