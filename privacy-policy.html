@@ -50,6 +50,7 @@
     text-decoration: none;
   }
   .skip-link:focus { top: 16px; }
+  main:focus { outline: none; }
   header {
     border-bottom: 1px solid var(--rule);
     padding-bottom: 28px;
@@ -117,6 +118,14 @@
     font-size: 14px;
     color: var(--muted);
   }
+  .footer-links {
+    list-style: none;
+    margin: 0 0 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+  }
+  .footer-links li { margin: 0; }
   footer p { margin: 0; }
 </style>
 </head>
@@ -125,7 +134,7 @@
 <a class="skip-link" href="#main">Skip to content</a>
 
 <header>
-  <a class="logo" href="./"><img src="brand/wazam-mark-on-light.svg" alt="" width="39" height="24">WAZAM</a>
+  <a class="logo" href="./" aria-label="WAZAM home"><img src="brand/wazam-mark-on-light.svg" alt="" width="39" height="24">WAZAM</a>
   <div class="tagline">Nature just got subtitles.</div>
   <h1>Privacy Policy</h1>
   <div class="effective-date">Effective Date: April 6, 2026 &nbsp;|&nbsp; Last Updated: November 15, 2026</div>
@@ -288,7 +297,13 @@
 </main>
 
 <footer>
-  <p>© 2026 WAZAM. All rights reserved. &nbsp;|&nbsp; <a href="./">Home</a> &nbsp;|&nbsp; <a href="terms.html">Terms of Service</a> &nbsp;|&nbsp; <a href="privacy-policy.html">Privacy Policy</a></p>
+  <ul class="footer-links">
+    <li><a href="./">Home</a></li>
+    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+    <li><a href="terms.html">Terms of Service</a></li>
+    <li><a href="mailto:support@wazam.ai">Contact</a></li>
+  </ul>
+  <p>© 2026 WAZAM. All rights reserved.</p>
 </footer>
 
 </body>
