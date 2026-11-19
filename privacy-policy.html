@@ -137,7 +137,7 @@
   <a class="logo" href="./" aria-label="WAZAM home"><img src="brand/wazam-mark-on-light.svg" alt="" width="39" height="24">WAZAM</a>
   <div class="tagline">Nature just got subtitles.</div>
   <h1>Privacy Policy</h1>
-  <div class="effective-date">Effective Date: April 6, 2026 &nbsp;|&nbsp; Last Updated: November 15, 2026</div>
+  <div class="effective-date">Effective Date: April 6, 2026 &nbsp;|&nbsp; Last Updated: November 19, 2026</div>
 </header>
 
 <main id="main" tabindex="-1">
@@ -190,7 +190,7 @@
 <p>For each identification, our server records a short summary: the time, your region code (state or province level, if location was available), the top species identified and its confidence, and how long processing took. These summaries contain no audio, coordinates, IP address, or device identifiers. They help us understand how the app is used and identify technical issues.</p>
 
 <p><strong>Technical Logs</strong></p>
-<p>Like most online services, our servers automatically log technical information about each request, such as your IP address, the time, and the address requested (which, for some requests, includes your coordinates). We use these logs for security, to diagnose problems, and to enforce the daily limit on free identifications, which is counted by IP address. Server logs are deleted automatically after 30 days.</p>
+<p>Like most online services, our servers automatically log technical information about each request, such as your IP address, the time, and the address requested (which, for some requests, includes your coordinates). We use these logs for security, to diagnose problems, and to enforce the daily limit on free identifications, which is counted by IP address. To enforce the free daily limit across our servers, we keep a counter identified by a keyed one-way hash of your IP address (never the address itself), deleted automatically within about two days. Server logs are deleted automatically after 30 days.</p>
 
 <p><strong>Subscriptions (WAZAM Pro)</strong></p>
 <p>WAZAM Pro is an optional subscription. It is purchased and billed through your Apple App Store account (or your Google Play account on Android). Apple or Google handles the payment. WAZAM never receives your payment card details, billing address, or store account details.</p>
@@ -198,7 +198,7 @@
 <ul>
   <li>The app creates an anonymous app user ID, a random identifier that isn't linked to your name, email address, or store account. The app sends RevenueCat this ID and your purchase and subscription status (which product you bought, when, and whether it is active), along with technical information that comes with any network request, such as your IP address, platform, app version, and locale.</li>
   <li>When you identify a sound, the app sends WAZAM's server the same anonymous app user ID. Our server checks that ID with RevenueCat to see whether it has an active WAZAM Pro subscription, and if it does, applies the WAZAM Pro daily limit. For subscribers, that limit is counted by the anonymous app user ID instead of by IP address.</li>
-  <li>Our server doesn't save the anonymous app user ID. It keeps only a one-way hash of it in memory: for a few minutes to remember the result of the check, and for up to a day to count the daily limit. Our logs contain only a shortened version of that hash.</li>
+  <li>Our server doesn't save the anonymous app user ID. It keeps a one-way hash of it in memory for a few minutes to remember the result of the check. To count the daily limit, it keeps a keyed one-way hash of the ID in its database and deletes it automatically within about two days. Our logs contain only a shortened version of that hash.</li>
 </ul>
 
 <h2>3. Information We Do Not Collect</h2>
@@ -244,7 +244,8 @@
   <li><strong>Feedback data:</strong> Retained indefinitely to train future models</li>
   <li><strong>Usage analytics:</strong> Retained indefinitely; these summaries contain no audio, coordinates, IP address, or device identifiers</li>
   <li><strong>Server logs:</strong> Deleted automatically after 30 days</li>
-  <li><strong>Subscription status:</strong> RevenueCat keeps the subscription record linked to your anonymous app user ID, and Apple or Google keep their purchase records, under their own policies. Our server keeps only a one-way hash of the ID, in memory: for a few minutes for the subscription check, and for up to a day for the daily limit count.</li>
+  <li><strong>Daily-limit counters:</strong> Identified only by a keyed one-way hash of your IP address or anonymous app user ID, never the address or ID itself; deleted automatically within about two days</li>
+  <li><strong>Subscription status:</strong> RevenueCat keeps the subscription record linked to your anonymous app user ID, and Apple or Google keep their purchase records, under their own policies. Our server keeps a one-way hash of the ID in memory for a few minutes for the subscription check, and a keyed one-way hash of it as a daily-limit counter, deleted automatically within about two days.</li>
 </ul>
 
 <h2>7. Your Rights and Choices</h2>
