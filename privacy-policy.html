@@ -164,12 +164,12 @@
 <p>On your device, the app keeps a copy of your most recent recordings (about 50) so you can replay them from your results and History. These copies stay in the app's own storage on your phone and are not uploaded again. Older recordings are deleted automatically as new ones are added. You can delete them all at any time with Clear History in Settings, or by deleting the app. Like other app data, they may be included in your device's own backups (for example iCloud or Google backups) if you have backups turned on.</p>
 
 <p><strong>Location Data (Optional)</strong></p>
-<p>If you grant location permission, WAZAM reads your device's location (latitude and longitude) when you tap Listen, to filter species suggestions to those known to occur in your region. Tapping Listen is also when the app first asks for location permission. If you have already allowed location, the app also reads it once when the intro opens (for example, when you replay it from Settings), to show an example of a bird common near you. WAZAM only requests location while you are using the app; it never tracks your location in the background.</p>
+<p>If you grant location permission, WAZAM reads your device's location (latitude and longitude) when you tap Listen, to favor species known to occur in your region. Tapping Listen is also when the app first asks for location permission. If you have already allowed location, the app also reads it once when the intro opens (for example, when you replay it from Settings), to show an example of a bird common near you. From version 1.7.0, the app asks only for your approximate location, and it rounds the coordinates to two decimal places (an area about 1 km, or just over half a mile, across) before using or sending them, even if you have turned on precise location in your phone's settings. Earlier versions use your precise location if you allowed it. WAZAM only requests location while you are using the app; it never tracks your location in the background.</p>
 <ul>
   <li>Your coordinates are sent with each identification request. Our server converts them into a region code (for example "US-CA") using OpenStreetMap's Nominatim service, which receives the coordinates for that lookup (see Section 10).</li>
-  <li>When the intro shows a bird common near you, the app sends your coordinates to our server for that lookup. Our server rounds them to the nearest 0.1 degree, an area about 11 km (7 miles) across, before asking Nominatim for your region code and eBird for birds seen there, so neither service receives your exact location. We do not save these coordinates in any database. Only the rounded area and the bird found for it are kept in our server's memory, for up to 24 hours, so that nearby lookups can reuse the answer; they are not linked to you. The exact coordinates are part of the request's address, so they appear in our server logs, which are deleted automatically after 30 days.</li>
+  <li>When the intro shows a bird common near you, the app sends your coordinates to our server for that lookup. Our server rounds them to the nearest 0.1 degree, an area about 11 km (7 miles) across, before asking Nominatim for your region code and eBird for birds seen there, so neither service receives your exact location. We do not save these coordinates in any database. Only the rounded area and the bird found for it are kept in our server's memory, for up to 24 hours, so that nearby lookups can reuse the answer; they are not linked to you. The coordinates the app sent (approximate from version 1.7.0, precise in earlier versions) are part of the request's address, so they appear in our server logs, which are deleted automatically after 30 days.</li>
   <li>For an identification request, we do not save your coordinates in any database. They may appear in our server logs, which are deleted automatically after 30 days.</li>
-  <li><strong>If you submit feedback</strong> on an identification ("Was this correct?"), the precise coordinates of that identification are saved with your feedback and retained in our cloud storage (Google Cloud Storage) to improve our models. See "Feedback Data" below.</li>
+  <li><strong>If you submit feedback</strong> on an identification ("Was this correct?"), the coordinates of that identification (approximate from version 1.7.0, precise in earlier versions) are saved with your feedback and retained in our cloud storage (Google Cloud Storage) to improve our models. See "Feedback Data" below.</li>
   <li>Location is never shared with advertisers.</li>
   <li>Location is entirely optional: the app works without location access.</li>
 </ul>
@@ -179,12 +179,12 @@
 <ul>
   <li>Whether the identification was correct or incorrect, and your correction, if provided</li>
   <li>The species that was identified, the top three suggestions, and their confidence levels</li>
-  <li>Your detected region code, and your precise location coordinates if you allowed location access</li>
+  <li>Your detected region code, and your location coordinates if you allowed location access (approximate from version 1.7.0, precise in earlier versions)</li>
   <li>The length of the recording and how many segments were analyzed (not the audio itself)</li>
   <li>The app version and platform (iOS or Android)</li>
   <li>A random identifier for that identification request</li>
 </ul>
-<p>Feedback is used to improve WAZAM's identification accuracy. It is not linked to your name, email address, or an account. Please note that precise coordinates can reveal where you were when you made a recording.</p>
+<p>Feedback is used to improve WAZAM's identification accuracy. It is not linked to your name, email address, or an account. Please note that these coordinates can reveal where you were when you made a recording: to within about 1 km from version 1.7.0, and precisely in earlier versions.</p>
 
 <p><strong>Usage Analytics</strong></p>
 <p>For each identification, our server records a short summary: the time, your region code (state or province level, if location was available), the top species identified and its confidence, and how long processing took. These summaries contain no audio, coordinates, IP address, or device identifiers. They help us understand how the app is used and identify technical issues.</p>
@@ -196,11 +196,11 @@
 <p>From version 1.7.0, when the app crashes or one of its features (recording, identification, purchases, species pages, or feedback) hits an unexpected error, the app sends a technical report so we can find and fix the problem. Nothing is sent in normal use, and there is no setting in the app to turn these reports off yet. A report contains:</p>
 <ul>
   <li>Where in the app's code the error happened (a stack trace) and a short label naming the feature involved</li>
-  <li>The app version and build, your phone's operating system and its version, and the device model (for example "iPhone16,1", not the name you gave your phone)</li>
-  <li>Up to 30 recent steps before the error: the type of screen you were on (for example "species page") and, for each recent request the app made, the server, the address without its query string, and whether it succeeded</li>
+  <li>The app version and build, your phone's operating system and its version, the device model (for example "iPhone16,1", not the name you gave your phone), and its memory, screen size, and language and region setting</li>
+  <li>Up to 30 recent steps before the error: the type of screen you were on (for example "species page") and, for each recent request the app made, the server, the address without its query string, and whether it succeeded. A species page's address includes the species name, so a report can show which species you looked up before the error.</li>
   <li>The time of the error, and whether it came from a released or a test version of the app</li>
 </ul>
-<p>A report never contains your audio, your location, anything you typed, or an account, purchase, or subscription ID, and the app doesn't attach any user identity to it. Your IP address is not stored with the report. We don't use crash reporting for performance tracking, session recording, or screenshots. If the crash happens in the phone's own system code rather than in the app's code, the reporting software may also add a random identifier that it creates when the app is installed (not linked to your name, email address, or any account) and, on Android, recent system events such as the app moving to the background.</p>
+<p>A report never contains your name, your audio, your location, anything you typed, or an account, purchase, or subscription ID, and the app doesn't attach any user identity to it. Your IP address is not stored with the report. We don't use crash reporting for performance tracking, session recording, or screenshots. If the crash happens in the phone's own system code rather than in the app's code, the reporting software may also add an identifier tied to that installation of the app (not linked to your name, email address, or any account).</p>
 <p>Crash reports are received by Sentry (Functional Software, Inc.), our crash-reporting service provider, and stored on its servers in the United States. They are deleted automatically after 30 days. We use them only to find and fix bugs.</p>
 
 <p><strong>Subscriptions (WAZAM Pro)</strong></p>
@@ -227,7 +227,7 @@
 <p>We use the information we collect to:</p>
 <ul>
   <li>Identify bird and insect species from your audio recordings</li>
-  <li>Filter species suggestions based on your geographic region</li>
+  <li>Favor species known to occur in your geographic region</li>
   <li>Check whether you have an active WAZAM Pro subscription, and apply the matching daily identification limit</li>
   <li>Improve the accuracy of our AI identification models using feedback</li>
   <li>Diagnose and fix technical problems with the app, and protect our service from abuse</li>
@@ -264,7 +264,7 @@
 <p>You have the following rights regarding your information:</p>
 <ul>
   <li><strong>Microphone access:</strong> You can revoke microphone permission at any time in your device settings. The app cannot identify sounds without it.</li>
-  <li><strong>Location access:</strong> You can revoke location permission at any time. The app continues to work without location, with less precise regional filtering.</li>
+  <li><strong>Location access:</strong> You can revoke location permission at any time. The app continues to work without location; it just can't favor species from your region.</li>
   <li><strong>Recordings on your device:</strong> You can delete all saved recordings at any time with Clear History in Settings.</li>
   <li><strong>Feedback:</strong> Feedback is optional; if you don't want your location saved, don't submit feedback, or turn off location access first.</li>
   <li><strong>Subscriptions:</strong> You can manage or cancel WAZAM Pro at any time in your App Store or Google Play account settings. Deleting the app does not cancel a subscription.</li>
@@ -290,7 +290,7 @@
   <li><strong>RevenueCat:</strong> Manages WAZAM Pro subscription status, using an anonymous app user ID. <a href="https://www.revenuecat.com/privacy" target="_blank">RevenueCat Privacy Policy</a></li>
   <li><strong>Apple App Store &amp; Google Play:</strong> Process subscription purchases and payments. <a href="https://www.apple.com/legal/privacy/" target="_blank">Apple Privacy Policy</a> · <a href="https://policies.google.com/privacy" target="_blank">Google Privacy Policy</a></li>
   <li><strong>OpenStreetMap Nominatim:</strong> Converts coordinates into a region code (only if you allow location access). <a href="https://osmfoundation.org/wiki/Privacy_Policy" target="_blank">OpenStreetMap Foundation Privacy Policy</a></li>
-  <li><strong>eBird API (Cornell Lab of Ornithology):</strong> Regional species data for location filtering. <a href="https://www.birds.cornell.edu/home/privacy-policy/" target="_blank">Cornell Lab Privacy Policy</a></li>
+  <li><strong>eBird API (Cornell Lab of Ornithology):</strong> Regional species data, used to favor species from your region. <a href="https://www.birds.cornell.edu/home/privacy" target="_blank">Cornell Lab Privacy Policy</a></li>
   <li><strong>Wikipedia &amp; Wikimedia Commons (Wikimedia Foundation):</strong> Species photos and descriptions are loaded by the app directly from Wikimedia, which receives your device's IP address and the species name, as with any web request (see Section 5). No location, recordings, or subscription information is sent. <a href="https://foundation.wikimedia.org/wiki/Policy:Privacy_policy" target="_blank">Wikimedia Privacy Policy</a></li>
   <li><strong>Expo (app updates):</strong> The app checks Expo's update service for app updates, which receives your IP address, platform, app version, and a random identifier created when the app is installed (EAS-Client-ID). That identifier isn't linked to your name, email address, or any account, and is used only to deliver app updates. <a href="https://expo.dev/privacy" target="_blank">Expo Privacy Policy</a></li>
   <li><strong>Sentry (Functional Software, Inc.):</strong> Crash and error reports from version 1.7.0, stored in the United States and deleted after 30 days (see Section 2). <a href="https://sentry.io/privacy/" target="_blank">Sentry Privacy Policy</a></li>
@@ -307,6 +307,7 @@
   <li><strong>Developer:</strong> Omar Guadalupe Mora Estrada</li>
   <li><strong>Location:</strong> Hayward, California, United States</li>
 </ul>
+<p><strong>Report a problem:</strong> In the app, Report a problem opens an email to <a href="mailto:support@wazam.ai">support@wazam.ai</a> in your mail app. The email is filled in with technical details that help us fix the problem, such as the app version and build number, your phone's operating system and its version, and the device model (for example "iPhone 15 Pro" or "Google Pixel 8"). If you report from an identification result or a species page, it also includes that identification's request ID or the species. Nothing in it identifies you or your installation of the app. You see the whole email in your mail app and choose whether to send it.</p>
 
 </main>
 
