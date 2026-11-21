@@ -137,7 +137,7 @@
   <a class="logo" href="./" aria-label="WAZAM home"><img src="brand/wazam-mark-on-light.svg" alt="" width="39" height="24">WAZAM</a>
   <div class="tagline">Nature just got subtitles.</div>
   <h1>Privacy Policy</h1>
-  <div class="effective-date">Effective Date: April 6, 2026 &nbsp;|&nbsp; Last Updated: November 19, 2026</div>
+  <div class="effective-date">Effective Date: April 6, 2026 &nbsp;|&nbsp; Last Updated: November 21, 2026</div>
 </header>
 
 <main id="main" tabindex="-1">
@@ -192,6 +192,17 @@
 <p><strong>Technical Logs</strong></p>
 <p>Like most online services, our servers automatically log technical information about each request, such as your IP address, the time, and the address requested (which, for some requests, includes your coordinates). We use these logs for security, to diagnose problems, and to enforce the daily limit on free identifications, which is counted by IP address. To enforce the free daily limit across our servers, we keep a counter identified by a keyed one-way hash of your IP address (never the address itself), deleted automatically within about two days. Server logs are deleted automatically after 30 days.</p>
 
+<p><strong>Crash Reports (from version 1.7.0)</strong></p>
+<p>From version 1.7.0, when the app crashes or one of its features (recording, identification, purchases, species pages, or feedback) hits an unexpected error, the app sends a technical report so we can find and fix the problem. Nothing is sent in normal use, and there is no setting in the app to turn these reports off yet. A report contains:</p>
+<ul>
+  <li>Where in the app's code the error happened (a stack trace) and a short label naming the feature involved</li>
+  <li>The app version and build, your phone's operating system and its version, and the device model (for example "iPhone16,1", not the name you gave your phone)</li>
+  <li>Up to 30 recent steps before the error: the type of screen you were on (for example "species page") and, for each recent request the app made, the server, the address without its query string, and whether it succeeded</li>
+  <li>The time of the error, and whether it came from a released or a test version of the app</li>
+</ul>
+<p>A report never contains your audio, your location, anything you typed, or an account, purchase, or subscription ID, and the app doesn't attach any user identity to it. Your IP address is not stored with the report. We don't use crash reporting for performance tracking, session recording, or screenshots. If the crash happens in the phone's own system code rather than in the app's code, the reporting software may also add a random identifier that it creates when the app is installed (not linked to your name, email address, or any account) and, on Android, recent system events such as the app moving to the background.</p>
+<p>Crash reports are received by Sentry (Functional Software, Inc.), our crash-reporting service provider, and stored on its servers in the United States. They are deleted automatically after 30 days. We use them only to find and fix bugs.</p>
+
 <p><strong>Subscriptions (WAZAM Pro)</strong></p>
 <p>WAZAM Pro is an optional subscription. It is purchased and billed through your Apple App Store account (or your Google Play account on Android). Apple or Google handles the payment. WAZAM never receives your payment card details, billing address, or store account details.</p>
 <p>WAZAM uses RevenueCat, a subscription-management service, to keep track of subscription status. If RevenueCat is enabled in your version of the app:</p>
@@ -228,6 +239,7 @@
 <ul>
   <li><strong>Service providers:</strong> We use Google Cloud to process audio, run our AI models, and store feedback and logs. Google processes data on our behalf under its data processing terms.</li>
   <li><strong>RevenueCat:</strong> When RevenueCat is enabled in the app, the app shares the anonymous app user ID and your purchase and subscription status (if any) with RevenueCat, which manages subscription status on our behalf. This happens whether or not you subscribe. Our server sends RevenueCat only that ID, to check it. No audio, location, or payment details are shared with RevenueCat.</li>
+  <li><strong>Sentry:</strong> From version 1.7.0, crash and error reports (described in Section 2) are sent to Sentry, which stores them on our behalf to help us fix bugs. No audio, location, typed text, or account or purchase ID is included.</li>
   <li><strong>Apple and Google:</strong> Subscriptions are purchased and billed through the App Store or Google Play under their terms. We don't send them your audio or location.</li>
   <li><strong>OpenStreetMap Nominatim:</strong> If you allow location access, our server sends your coordinates to Nominatim to convert them into a region code. No audio or other information about you is included.</li>
   <li><strong>eBird API (Cornell Lab):</strong> We send your region code (e.g., "US-CA") to eBird's API to retrieve regional species lists. No personal information is transmitted.</li>
@@ -281,6 +293,7 @@
   <li><strong>eBird API (Cornell Lab of Ornithology):</strong> Regional species data for location filtering. <a href="https://www.birds.cornell.edu/home/privacy-policy/" target="_blank">Cornell Lab Privacy Policy</a></li>
   <li><strong>Wikipedia &amp; Wikimedia Commons (Wikimedia Foundation):</strong> Species photos and descriptions are loaded by the app directly from Wikimedia, which receives your device's IP address and the species name, as with any web request (see Section 5). No location, recordings, or subscription information is sent. <a href="https://foundation.wikimedia.org/wiki/Policy:Privacy_policy" target="_blank">Wikimedia Privacy Policy</a></li>
   <li><strong>Expo (app updates):</strong> The app checks Expo's update service for app updates, which receives your IP address, platform, app version, and a random identifier created when the app is installed (EAS-Client-ID). That identifier isn't linked to your name, email address, or any account, and is used only to deliver app updates. <a href="https://expo.dev/privacy" target="_blank">Expo Privacy Policy</a></li>
+  <li><strong>Sentry (Functional Software, Inc.):</strong> Crash and error reports from version 1.7.0, stored in the United States and deleted after 30 days (see Section 2). <a href="https://sentry.io/privacy/" target="_blank">Sentry Privacy Policy</a></li>
   <li><strong>BirdNET (Cornell Lab of Ornithology &amp; Chemnitz University of Technology):</strong> Open-source AI model for species identification. No user data is transmitted to BirdNET servers; the model runs on our infrastructure.</li>
 </ul>
 
