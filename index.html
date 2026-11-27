@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WAZAM — Identify birds and insects by sound</title>
-<meta name="description" content="Hold up your phone and tap Listen. WAZAM suggests which bird or insect you heard, from 6,000+ bird species and 16 insect species. Free beta on TestFlight.">
+<title>WAZAM — Identify birds, frogs and insects by sound</title>
+<meta name="description" content="Tap Listen and WAZAM suggests which bird, frog or insect you heard: 6,000+ bird species, 39 frogs and toads, and 16 insect species. Free beta on TestFlight.">
 <link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -12,8 +12,8 @@
 <link rel="canonical" href="https://wazam.ai/">
 <meta name="theme-color" content="#0f1c35">
 <meta property="og:type" content="website">
-<meta property="og:title" content="WAZAM — Identify birds and insects by sound">
-<meta property="og:description" content="Tap Listen and WAZAM suggests which bird or insect you heard. Free beta on TestFlight.">
+<meta property="og:title" content="WAZAM — Identify birds, frogs and insects by sound">
+<meta property="og:description" content="Tap Listen and WAZAM suggests which bird, frog or insect you heard: 6,000+ bird species, 39 frogs and toads, and 16 insect species. Free beta on TestFlight.">
 <meta property="og:url" content="https://wazam.ai/">
 <meta property="og:image" content="https://wazam.ai/og-image.png?v=2">
 <meta property="og:image:width" content="1200">
@@ -27,7 +27,7 @@
   "@type": "MobileApplication",
   "name": "WAZAM",
   "url": "https://wazam.ai/",
-  "description": "Tap Listen and WAZAM suggests which bird or insect you heard: 6,000+ bird species and 16 insect species. No account needed.",
+  "description": "Tap Listen and WAZAM suggests which bird, frog or insect you heard: 6,000+ bird species, 39 frogs and toads, and 16 insect species. No account needed.",
   "applicationCategory": "EducationalApplication",
   "operatingSystem": "iOS",
   "image": "https://wazam.ai/og-image.png?v=2",
@@ -287,7 +287,7 @@
   .stats ul {
     list-style: none;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
   }
 
   .stat {
@@ -488,6 +488,13 @@
   .is-android .not-android,
   html:not(.is-android) .android-only { display: none; }
 
+  .credit {
+    margin-top: 48px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-dim);
+  }
+
   .contact {
     text-align: center;
     margin-top: 40px;
@@ -573,6 +580,11 @@
 
   @media (max-width: 999px) {
     .roadmap-grid { grid-template-columns: repeat(2, 1fr); }
+    /* Five stats: three over two */
+    .stats ul { grid-template-columns: repeat(6, 1fr); }
+    .stat { grid-column: span 2; }
+    .stat:nth-child(n+4) { grid-column: span 3; border-top: 1px solid var(--rule); }
+    .stat:nth-child(4) { border-left: 0; }
   }
 
   /* Below 880px the section links don't fit beside the logo and button,
@@ -585,8 +597,11 @@
   @media (max-width: 799px) {
     .steps { grid-template-columns: 1fr; gap: 32px; }
     .stats ul { grid-template-columns: repeat(2, 1fr); }
-    .stat:nth-child(3) { border-left: 0; }
+    .stat, .stat:nth-child(n+4) { grid-column: auto; }
+    .stat:nth-child(4) { border-left: 1px solid var(--rule); }
+    .stat:nth-child(3), .stat:nth-child(5) { border-left: 0; }
     .stat:nth-child(n+3) { border-top: 1px solid var(--rule); }
+    .stat:nth-child(5) { grid-column: 1 / -1; }
   }
 
   @media (max-width: 768px) {
@@ -633,11 +648,11 @@
 <section class="hero" aria-labelledby="hero-title">
   <div class="hero-copy">
     <h1 id="hero-title">Nature just got<br><em>subtitles.</em></h1>
-    <p class="hero-tagline">Identify birds and insects by their sound.</p>
+    <p class="hero-tagline">Identify birds, frogs and insects by their sound.</p>
     <p class="hero-desc">
       Hold up your phone and tap Listen. WAZAM suggests what you heard,
-      with how sure it is. 6,000+ bird species, 16 insect species,
-      no account needed.
+      with how sure it is. 6,000+ bird species, 39 frogs and toads,
+      16 insect species, no account needed.
     </p>
 
     <div class="hero-actions">
@@ -662,7 +677,8 @@
 <!-- STATS -->
 <section class="stats" aria-label="WAZAM in numbers">
   <ul class="wrap">
-    <li class="stat"><span class="stat-num" aria-hidden="true">6,<span>000+</span></span><span class="stat-label"><span class="sr-only">More than 6,000 </span>Bird species, via BirdNET</span></li>
+    <li class="stat"><span class="stat-num" aria-hidden="true">6,<span>000+</span></span><span class="stat-label"><span class="sr-only">More than 6,000 </span>Bird species</span></li>
+    <li class="stat"><span class="stat-num" aria-hidden="true"><span>39</span></span><span class="stat-label"><span class="sr-only">39 </span>Frogs and toads</span></li>
     <li class="stat"><span class="stat-num" aria-hidden="true"><span>16</span></span><span class="stat-label"><span class="sr-only">16 </span>Insect species</span></li>
     <li class="stat"><span class="stat-num" aria-hidden="true"><span>8</span>–15s</span><span class="stat-label"><span class="sr-only">8 to 15 seconds </span>Per recording</span></li>
     <li class="stat"><span class="stat-num" aria-hidden="true"><span>0</span></span><span class="stat-label"><span class="sr-only">No </span>Accounts needed</span></li>
@@ -675,7 +691,7 @@
     <h2 class="section-title" id="how-title">Point. Listen.<br><em>Find out.</em></h2>
     <p class="section-sub">
       WAZAM listens for a few seconds, cleans up the recording, and compares
-      it with thousands of known bird and insect calls.
+      it with thousands of known bird, frog and insect calls.
     </p>
 
     <ol class="steps">
@@ -687,7 +703,7 @@
       <li class="step">
         <span class="step-num" aria-hidden="true">2</span>
         <h3>WAZAM listens closely</h3>
-        <p>WAZAM reduces hiss and filters out the low rumble of wind and traffic. Then BirdNET, the bird-sound model from the Cornell Lab of Ornithology and Chemnitz University of Technology, listens for birds. Insects use WAZAM's own model.</p>
+        <p>WAZAM reduces hiss and filters out the low rumble of wind and traffic. Then Perch 2.0 from Google DeepMind, one sound model for birds, frogs and insects, listens to it on WAZAM's own servers.</p>
       </li>
       <li class="step">
         <span class="step-num" aria-hidden="true">3</span>
@@ -695,6 +711,7 @@
         <p>Each one says how sure WAZAM is: a strong match, a possible match or a faint detection. Tap one for photos and a description, then tell us whether it was right.</p>
       </li>
     </ol>
+    <p class="credit">Identification powered by Perch 2.0 from Google DeepMind (Apache License 2.0). Reference: van Merriënboer et al. (2025), <cite>Perch 2.0: The Bittern Lesson for Bioacoustics</cite>, <a href="https://arxiv.org/abs/2508.04665">arXiv:2508.04665</a>.</p>
   </div>
 </section>
 
@@ -714,11 +731,11 @@
       </li>
       <li class="feature">
         <h3>Knows where and when</h3>
-        <p>With your permission, WAZAM favours species recorded in your region and what usually calls at that hour. Without it, the app still works.</p>
+        <p>With your permission, WAZAM favors species recorded in your region and what usually calls at that hour. Without it, the app still works.</p>
       </li>
       <li class="feature">
-        <h3>Insects too</h3>
-        <p>Switch to Insects for crickets, katydids, cicadas and bees.</p>
+        <h3>Frogs and insects too</h3>
+        <p>Switch to Frogs for frog and toad calls, or to Insects for crickets, katydids, cicadas and bees.</p>
       </li>
       <li class="feature">
         <h3>Private by design</h3>
@@ -733,7 +750,7 @@
   <div class="wrap">
     <h2 class="section-title" id="roadmap-title">Birds are just<br><em>the beginning.</em></h2>
     <p class="section-sub">
-      Birds and insects are live in the beta, on iPhone and Android.
+      Birds, frogs and insects are live in the beta, on iPhone and Android.
       More of nature's voices are coming, one group at a time.
     </p>
 
@@ -742,7 +759,7 @@
         <p class="roadmap-phase">Live</p>
         <h3>Birds</h3>
         <ul class="roadmap-items">
-          <li>Worldwide, via BirdNET</li>
+          <li>Worldwide, via Perch 2.0</li>
           <li>Location and time-of-day aware</li>
         </ul>
       </li>
@@ -754,12 +771,12 @@
           <li>One switch on the Listen screen</li>
         </ul>
       </li>
-      <li class="roadmap-item">
-        <p class="roadmap-phase">Next</p>
+      <li class="roadmap-item roadmap-live">
+        <p class="roadmap-phase">Live</p>
         <h3>Frogs</h3>
         <ul class="roadmap-items">
-          <li>Frog and toad calls</li>
-          <li>Same Listen button</li>
+          <li>39 US frogs and toads</li>
+          <li>One switch on the Listen screen</li>
         </ul>
       </li>
       <li class="roadmap-item">
@@ -780,8 +797,8 @@
     <div class="beta-head">
       <h2 class="section-title" id="beta-title">Heard something?<br><em>Find out what it was.</em></h2>
       <p class="section-sub">
-        The beta is free, with up to 20 identifications a day for birds
-        and insects together. Try WAZAM on your next walk and tell us what
+        The beta is free, with up to 20 identifications a day for birds,
+        frogs and insects together. Try WAZAM on your next walk and tell us what
         it got right and wrong.
       </p>
     </div>
